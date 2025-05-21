@@ -14,3 +14,8 @@
 void helloWorld() {
     printf("Hello World !");
 }
+
+void first_pixel {
+int read_image_data(const char *filename, unsigned char **data, int *width, int *height, int *channel_count);
+
+}
