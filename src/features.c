@@ -14,3 +14,13 @@
 void helloWorld() {
     printf("Hello World !");
 }
+void tenth_pixel (char *source_path) {
+    int r,g,b;
+    int width, height, channel_count;
+    unsigned char *data;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    r = data[27];
+    g = data[28];
+    b = data[29];
+    printf("tenth_pixel: %d,%d,%d \n",r,g,b);
+}
