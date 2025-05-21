@@ -35,5 +35,15 @@ int main(int argc, char **argv) {
    * TO COMPLETE
    */
   
+if (strncmp(configuration.command, "dimension", 9) == 0) {
+    dimension(configuration.filenames[0]);
+}
+
+if (strncmp(configuration.command, "deuxieme_ligne", 11) == 0) {
+    deuxieme_ligne(configuration.filenames[0]);
+}
+
   return 0;
+
+
 }

@@ -4,5 +4,7 @@
 
 void helloWorld();
 void tenth_pixel (char *source_path);
+void dimension(char *source_path);
+void deuxieme_ligne(char *source_path);
 
 #endif

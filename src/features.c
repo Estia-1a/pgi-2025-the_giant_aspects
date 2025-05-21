@@ -24,3 +24,28 @@ void tenth_pixel (char *source_path) {
     b = data[29];
     printf("tenth_pixel: %d,%d,%d \n",r,g,b);
 }
+
+void dimension(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+
+    if (data == NULL) {
+        printf("impossible de lire l'image \"%s\"\n", source_path);
+        return;
+    }
+
+    printf("dimension: %d, %d\n", width, height);
+}
+
+void deuxieme_ligne(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    int i = 3 * width;
+    int R = data[i];
+    int G = data[i + 1];
+    int B = data[i + 2];
+    printf("deuxieme_ligne: %d, %d, %d\n", R, G, B);
+}
