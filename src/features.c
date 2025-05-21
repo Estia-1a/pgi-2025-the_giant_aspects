@@ -28,3 +28,14 @@ void dimension(char *source_path) {
 
     printf("dimension: %d, %d\n", width, height);
 }
+
+void deuxieme_ligne(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    int i = 3 * width;
+    int R = data[i];
+    int G = data[i + 1];
+    int B = data[i + 2];
+    printf("deuxieme_ligne: %d, %d, %d\n", R, G, B);
+}

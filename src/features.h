@@ -4,5 +4,6 @@
 
 void helloWorld();
 void dimension(char *source_path);
+void deuxieme_ligne(char *source_path);
 
 #endif
