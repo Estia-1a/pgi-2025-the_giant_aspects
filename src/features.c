@@ -49,3 +49,40 @@ void deuxieme_ligne(char *source_path) {
     int B = data[i + 2];
     printf("deuxieme_ligne: %d, %d, %d\n", R, G, B);
 }
+
+void max_pixel(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+
+    if (data == NULL) {
+        printf("l'Image n'est pas lu\n");
+        return;
+    }
+
+    int max_sum = -1;
+    int max_X = 0, max_Y = 0;
+    int R_max = 0, G_max = 0, B_max = 0;
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int index = (y * width + x) * 3;
+            int R = data[index];
+            int G = data[index + 1];
+            int B = data[index + 2];
+
+            int sum = R + G + B;
+            if (sum > max_sum) {
+                max_sum = sum;
+                max_X = x;
+                max_Y = y;
+                R_max = R;
+                G_max = G;
+                B_max = B;
+            }
+        }
+    }
+
+    printf("max_pixel (%d, %d): %d, %d, %d\n", max_X, max_Y, R_max, G_max, B_max);
+}
