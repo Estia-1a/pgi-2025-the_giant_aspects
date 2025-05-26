@@ -98,3 +98,40 @@ G =data[1];
 B =data[2];
 printf ("first_pixel: %d, %d, %d", R, G, B);
 }
+
+void min_pixel(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+
+    if (data == NULL) {
+        printf("l'Image n'est pas lu\n");
+        return;
+    }
+
+    int min_sum = 256 * 3 + 1;
+    int min_x = 0, min_y = 0;
+    int R_min = 0, G_min = 0, B_min = 0;
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int index = (y * width + x) * 3;
+            int R = data[index];
+            int G = data[index + 1];
+            int B = data[index + 2];
+
+            int sum = R + G + B;
+            if (sum < min_sum) {
+                min_sum = sum;
+                min_x = x;
+                min_y = y;
+                R_min = R;
+                G_min = G;
+                B_min = B;
+            }
+        }
+    }
+
+    printf("min_pixel (%d, %d): %d, %d, %d\n", min_x, min_y, R_min, G_min, B_min);
+}
