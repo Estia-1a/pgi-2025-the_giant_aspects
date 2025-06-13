@@ -6,3 +6,4 @@ min_component
 max_component
 
 print_pixel
+color_invert
