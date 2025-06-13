@@ -44,11 +44,11 @@ printf("print_pixel (%d, %d) : %d, %d, %d\n", x, y, px.R, px.G, px.B);
    
 }
 
-void color_invert(char *filename) {
+void color_invert(char *source_path) {
     unsigned char *data;
     int width, height, channel_count; 
 
-    read_image_data(filename,&data, &width, &height, &channel_count);
+    read_image_data(source_path,&data, &width, &height, &channel_count);
     int nbre_pixels = width*height*channel_count;
 
     for (int i=0; i<nbre_pixels; i++) {
@@ -56,4 +56,11 @@ void color_invert(char *filename) {
     }
 
 write_image_data("image_out.bmp", data, width, height);
+}
+
+void scale_crop (char *source_path, int center_x, int center_y, int box_width, int box_height) {
+    unsigned char *data; 
+    int width, height, channel_count;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
 }
