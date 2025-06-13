@@ -278,3 +278,19 @@ void max_component(char *source_path, char *color) {
 
     printf("min_component %c (%d, %d): %d\n", color[0], x, y, max);
 }
+
+void print_pixel (char*source_path, int x, int y) {
+    unsigned char *data;
+    int  width;
+    int height;
+    int channel_count; 
+  
+
+read_image_data(source_path, &data, &width, &height, &channel_count);
+
+pixelRGB px = get_pixel(data, width, height, channel_count, x, y);
+
+
+printf("print_pixel (%d, %d) : %d, %d, %d\n", x, y, px.R, px.G, px.B);
+   
+}
