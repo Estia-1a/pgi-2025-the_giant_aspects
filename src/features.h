@@ -14,5 +14,5 @@ void stat_report(char *source_path);
 
 
 void min_component (char *source_path, char *color);
-
+void max_component (char *source_path, char *color);
 #endif
