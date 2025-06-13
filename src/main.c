@@ -90,6 +90,10 @@ if (strcmp(configuration.command, "color_green") == 0) {
 if (strcmp(configuration.command, "color_blue") == 0) {
     color_blue(configuration.filenames[0]);
 }
+
+if (strcmp(configuration.command, "color_gray") == 0) {
+    color_gray(configuration.filenames[0]);
+}
   return 0;
 
 
