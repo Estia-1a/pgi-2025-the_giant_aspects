@@ -454,3 +454,41 @@ void rotate_acw(char *source_path) {
     free_image_data(data_in);
     free(data_out);
 }
+
+void color_gray(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    if (data == NULL) {
+        printf("Erreur : image non lue\n");
+        return;
+    }
+
+    unsigned char *gray_data = malloc(width * height * channel_count);
+    if (gray_data == NULL) {
+        printf("Erreur : mémoire insuffisante\n");
+        return;
+    }
+
+    for (int i = 0; i < width * height; i++) {
+        int index = i * channel_count;
+
+        unsigned char R = data[index + 2];
+        unsigned char G = data[index + 1];
+        unsigned char B = data[index + 0];
+
+        unsigned char gray = (R + G + B) / 3;
+
+        gray_data[index]     = gray;
+        gray_data[index + 1] = gray;
+        gray_data[index + 2] = gray;
+    }
+
+    int result = write_image_data("image_out.bmp", gray_data, width, height);
+    if (result == 0) {
+        printf("Image en niveaux de gris générée : image_out.bmp\n");
+    }
+
+    free(gray_data);
+}
