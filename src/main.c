@@ -89,6 +89,11 @@ if (strcmp(configuration.command, "color_green") == 0) {
 }
 if (strcmp(configuration.command, "color_blue") == 0) {
     color_blue(configuration.filenames[0]);
+}if (strncmp(configuration.command, "rotate_cw", 9) == 0) {
+    rotate_cw(configuration.filenames[0]);
+}
+if (strncmp(configuration.command, "rotate_acw", 10) == 0) {
+    rotate_acw(configuration.filenames[0]);
 }
   return 0;
 
