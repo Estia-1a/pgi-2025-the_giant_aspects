@@ -31,9 +31,15 @@ int main(int argc, char **argv) {
     /* helloworld() function is defined in feature.h and implemented in feature.c */
     tenth_pixel(configuration.filenames[0]);
   }
-  /*
-   * TO COMPLETE
-   */
-  
+  if ( strncmp(configuration.command, "min_component", 13) == 0 ) {
+    char *color = NULL;
+    for (int i = 0; i < argc - 1; i++) {
+        if (strcmp(argv[i], "min_component") == 0) {
+            color = argv[i + 1];
+            break;
+        }
+    }
+    min_component(configuration.filenames[0], color);
+  }  
   return 0;
 }

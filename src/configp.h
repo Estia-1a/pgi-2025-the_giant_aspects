@@ -15,6 +15,7 @@ typedef struct _config {
     char command[MAX_LENGTH_COMMAND] ; /* Command called. Example: helloworld */
     char* filenames[MAX_FILE_COUNT] ; /* Images path. Example: ./images/input/image.jpeg */
     char* arguments[MAX_ARGUMENT_COUNT] ; /* Other arguments. */
+    char* option;
 } Config ;
 
 #endif

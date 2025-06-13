@@ -4,5 +4,6 @@
 
 void helloWorld();
 void tenth_pixel (char *source_path);
+void min_component (char *source_path, char *color);
 
 #endif
