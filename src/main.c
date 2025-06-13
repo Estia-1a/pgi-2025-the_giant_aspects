@@ -66,6 +66,16 @@ if (strncmp(configuration.command, "min_pixel", 9) == 0) {
 if (strncmp(configuration.command, "stat_report", 11) == 0) {
     stat_report(configuration.filenames[0]);
 }
+if ( strncmp(configuration.command, "max_component", 13) == 0 ) {
+  char *color = NULL;
+  for (int i = 0; i < argc - 1; i++) {
+      if (strcmp(argv[i], "max_component") == 0) {
+          color = argv[i + 1];
+          break;
+      }
+  }
+  max_component(configuration.filenames[0], color);
+}  
 
   return 0;
 
