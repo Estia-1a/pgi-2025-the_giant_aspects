@@ -1,6 +1,6 @@
 #include <estia-image.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "features.h"
 #include "utils.h"
 
@@ -152,8 +152,6 @@ void stat_report(char *source_path) {
         fclose(file);
         return;
     }
-
-
     int max_sum = -1, max_x = 0, max_y = 0, R_max = 0, G_max = 0, B_max = 0;
     int min_sum = 256*3+1, min_x = 0, min_y = 0, R_min = 0, G_min = 0, B_min = 0;
     int R_min_val = 255, R_max_val = 0, G_min_val = 255, G_max_val = 0, B_min_val = 255, B_max_val = 0;
@@ -192,7 +190,6 @@ void stat_report(char *source_path) {
             if (B > B_max_val) B_max_val = B;
         }
     }
-
     fprintf(file, "max_pixel (%d, %d): %d, %d, %d\n\n", max_x, max_y, R_max, G_max, B_max);
     fprintf(file, "min_pixel (%d, %d): %d, %d, %d\n\n", min_x, min_y, R_min, G_min, B_min);
     fprintf(file, "max_component R: %d\n", R_max_val);
@@ -203,4 +200,95 @@ void stat_report(char *source_path) {
     fprintf(file, "min_component B: %d\n", B_min_val);
 
     fclose(file);
+}
+
+
+void color_red(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    if (data == NULL) {
+        printf("Erreur : image non lue\n");
+        return;
+    }
+
+    unsigned char *red_data = malloc(width * height * channel_count);
+    if (red_data == NULL) {
+        printf("Erreur : mémoire insuffisante\n");
+        return;
+    }
+
+    for (int i = 0; i < width * height; i++) {
+        int index = i * channel_count;
+        red_data[index]     = data[index];
+        red_data[index + 1] = 0;
+        red_data[index + 2] = 0;
+    }
+
+    int result = write_image_data("image_out_red.bmp", red_data, width, height);
+    if (result == 0) {
+        printf("Image rouge générée : image_out_red.bmp\n");
+    }
+
+    free(red_data);
+}
+
+void color_green(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    if (data == NULL) {
+        printf("Erreur : image non lue\n");
+        return;
+    }
+
+    unsigned char *green_data = malloc(width * height * channel_count);
+    if (green_data == NULL) {
+        printf("Erreur : mémoire insuffisante\n");
+        return;
+    }
+
+    for (int i = 0; i < width * height; i++) {
+        int index = i * channel_count;
+        green_data[index]     = 0;
+        green_data[index + 1] = data[index + 1];
+        green_data[index + 2] = 0;
+    }
+
+    int result = write_image_data("image_out_green.bmp", green_data, width, height);
+    if (result == 0) {
+        printf("Image verte générée : image_out_green.bmp\n");
+    }
+
+    free(green_data);
+}
+
+void color_blue(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    if (data == NULL) {
+        printf("Erreur : image non lue\n");
+        return;
+    }
+
+    unsigned char *blue_data = malloc(width * height * channel_count);
+    if (blue_data == NULL) {
+        printf("Erreur : mémoire insuffisante\n");
+        return;
+    }
+
+    for (int i = 0; i < width * height; i++) {
+        int index = i * channel_count;
+        blue_data[index]     = 0;
+        blue_data[index + 1] = 0;
+        blue_data[index + 2] = data[index + 2];
+    }
+
+    int result = write_image_data("image_out_blue.bmp", blue_data, width, height);
+    if (result == 0) {
+        printf("Image bleue générée : image_out_blue.bmp\n");
+    }
+   
+    free(blue_data);
 }
