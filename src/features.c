@@ -315,9 +315,9 @@ void color_red(char *source_path) {
         red_data[index + 2] = 0;
     }
 
-    int result = write_image_data("image_out_red.bmp", red_data, width, height);
+    int result = write_image_data("image_out.bmp", red_data, width, height);
     if (result == 0) {
-        printf("Image rouge générée : image_out_red.bmp\n");
+        printf("Image rouge générée : image_out.bmp\n");
     }
 
     free(red_data);
@@ -345,9 +345,9 @@ void color_green(char *source_path) {
         green_data[index + 2] = 0;
     }
 
-    int result = write_image_data("image_out_green.bmp", green_data, width, height);
+    int result = write_image_data("image_out.bmp", green_data, width, height);
     if (result == 0) {
-        printf("Image verte générée : image_out_green.bmp\n");
+        printf("Image verte générée : image_out.bmp\n");
     }
 
     free(green_data);
@@ -375,9 +375,9 @@ void color_blue(char *source_path) {
         blue_data[index + 2] = data[index + 2];
     }
 
-    int result = write_image_data("image_out_blue.bmp", blue_data, width, height);
+    int result = write_image_data("image_out.bmp", blue_data, width, height);
     if (result == 0) {
-        printf("Image bleue générée : image_out_blue.bmp\n");
+        printf("Image bleue générée : image_out.bmp\n");
     }
    
     free(blue_data);
