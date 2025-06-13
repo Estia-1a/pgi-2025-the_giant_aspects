@@ -1,0 +1,15 @@
+/home/runner/work/pgi-2025-the_giant_aspects/pgi-2025-the_giant_aspects/src/features.c:3:20: warning: extra tokens at end of #include directive
+    3 | #include <stdlib.h>#include <stdlib.h>
+      |                    ^
+/home/runner/work/pgi-2025-the_giant_aspects/pgi-2025-the_giant_aspects/src/features.c:310:6: error: redefinition of ‘color_invert’
+  310 | void color_invert(char *filename) {
+      |      ^~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_giant_aspects/pgi-2025-the_giant_aspects/src/features.c:296:6: note: previous definition of ‘color_invert’ with type ‘void(char *)’
+  296 | void color_invert(char *filename) {
+      |      ^~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
