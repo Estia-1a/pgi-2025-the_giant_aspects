@@ -39,10 +39,16 @@ int main(int argc, char **argv) {
    if ( strncmp( configuration.command, "first_pixel", 10 ) == 0 ) {
   first_pixel(configuration.filenames[0]);
   }
-  /*
-   * TO COMPLETE
-   */
-  
+  if ( strncmp(configuration.command, "min_component", 13) == 0 ) {
+    char *color = NULL;
+    for (int i = 0; i < argc - 1; i++) {
+        if (strcmp(argv[i], "min_component") == 0) {
+            color = argv[i + 1];
+            break;
+        }
+    }
+    min_component(configuration.filenames[0], color);
+  }  
 if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
 }
