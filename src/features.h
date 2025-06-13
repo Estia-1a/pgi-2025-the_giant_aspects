@@ -16,4 +16,5 @@ void stat_report(char *source_path);
 void min_component (char *source_path, char *color);
 void max_component (char *source_path, char *color);
 void rotate_cw (char *source_path);
+void rotate_acw (char *source_path);
 #endif
