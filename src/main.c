@@ -44,6 +44,10 @@ int main(int argc, char **argv) {
     /* helloworld() function is defined in feature.h and implemented in feature.c */
   print_pixel(configuration.filenames[0], atoi(configuration.arguments[0]), atoi(configuration.arguments[1]));
   }
+
+  if (strncmp(configuration.command, "color_invert", 12)== 0) {
+    color_invert(configuration.filenames[0]); 
+  }
   if ( strncmp(configuration.command, "min_component", 13) == 0 ) {
     char *color = NULL;
     for (int i = 0; i < argc - 1; i++) {

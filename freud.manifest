@@ -6,5 +6,6 @@ min_component
 max_component
 
 print_pixel
+color_invert
 rotate_cw
 rotate_acw

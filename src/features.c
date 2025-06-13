@@ -293,6 +293,34 @@ printf("print_pixel (%d, %d) : %d, %d, %d\n", x, y, px.R, px.G, px.B);
    
 }
 
+void color_invert(char *filename) {
+    unsigned char *data;
+    int width, height, channel_count; 
+
+    read_image_data(filename,&data, &width, &height, &channel_count);
+    int nbre_pixels = width*height*channel_count;
+
+    for (int i=0; i<nbre_pixels; i++) {
+        data[i] = 255 - data[i];
+    }
+
+write_image_data("image_out.bmp", data, width, height);
+}
+
+void color_invert(char *filename) {
+    unsigned char *data;
+    int width, height, channel_count; 
+
+    read_image_data(filename,&data, &width, &height, &channel_count);
+    int nbre_pixels = width*height*channel_count;
+
+    for (int i=0; i<nbre_pixels; i++) {
+        data[i] = 255 - data[i];
+    }
+
+write_image_data("image_out.bmp", data, width, height);
+}
+
 void color_red(char *source_path) {
     unsigned char *data = NULL;
     int width, height, channel_count;
