@@ -47,8 +47,8 @@ if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
 }
 
-if (strncmp(configuration.command, "deuxieme_ligne", 11) == 0) {
-    deuxieme_ligne(configuration.filenames[0]);
+if (strncmp(configuration.command, "second_line", 11) == 0) {
+    second_line(configuration.filenames[0]);
 }
 if (strncmp(configuration.command, "max_pixel", 9) == 0) {
     max_pixel(configuration.filenames[0]);
