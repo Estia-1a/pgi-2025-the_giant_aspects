@@ -8,3 +8,4 @@ max_component
 print_pixel
 rotate_cw
 rotate_acw
+mirror_horizontal
