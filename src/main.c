@@ -49,13 +49,8 @@ int main(int argc, char **argv) {
     color_invert(configuration.filenames[0]); 
   }
   if ( strncmp(configuration.command, "min_component", 13) == 0 ) {
-    char *color = NULL;
-    for (int i = 0; i < argc - 1; i++) {
-        if (strcmp(argv[i], "min_component") == 0) {
-            color = argv[i + 1];
-            break;
-        }
-    }
+  char *color = NULL;
+  color = argv[argc-1];
     min_component(configuration.filenames[0], color);
   }  
 if (strncmp(configuration.command, "dimension", 9) == 0) {
@@ -77,12 +72,7 @@ if (strncmp(configuration.command, "stat_report", 11) == 0) {
 }
 if ( strncmp(configuration.command, "max_component", 13) == 0 ) {
   char *color = NULL;
-  for (int i = 0; i < argc - 1; i++) {
-      if (strcmp(argv[i], "max_component") == 0) {
-          color = argv[i + 1];
-          break;
-      }
-  }
+  color = argv[argc-1];
   max_component(configuration.filenames[0], color);
 }  
 if (strcmp(configuration.command, "color_red") == 0) {
@@ -102,6 +92,15 @@ if (strncmp(configuration.command, "rotate_acw", 10) == 0) {
 
 if (strcmp(configuration.command, "color_gray") == 0) {
     color_gray(configuration.filenames[0]);
+}
+if (strncmp(configuration.command, "mirror_horizontal", 17) == 0) {
+    mirror_horizontal(configuration.filenames[0]);
+}
+if (strncmp(configuration.command, "mirror_vertical", 15) == 0) {
+    mirror_vertical(configuration.filenames[0]);
+}
+if (strncmp(configuration.command, "mirror_total", 12) == 0) {
+    mirror_total(configuration.filenames[0]);
 }
   return 0;
 
