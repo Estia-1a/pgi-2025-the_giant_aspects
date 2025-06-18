@@ -541,3 +541,37 @@ void mirror_total(char *source_path){
     free_image_data(data_in);
     free(data_out);
 }
+void scale_nearest(char *source_path, char *scale_str) {
+
+    int width, height, channel_count;
+    unsigned char *data_in;
+
+    // Lecture de l’image source
+    read_image_data(source_path, &data_in, &width, &height, &channel_count);
+
+    // Conversion du facteur d’échelle
+    float scale = atof(scale_str);
+
+    printf("Scaling image '%s' by factor %s\n", source_path, scale_str);
+    int new_width = (int)(width * scale);
+    int new_height = (int)(height * scale);
+    unsigned char *data_out = malloc(new_width * new_height * channel_count);
+
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            // Coordonnées de l’image d’origine (plus proche voisin)
+            int src_x = (int)(x / scale);
+            int src_y = (int)(y / scale);
+
+            for (int c = 0; c < channel_count; c++) {
+                data_out[(y * new_width + x) * channel_count + c] =
+                    data_in[(src_y * width + src_x) * channel_count + c];
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", data_out, new_width, new_height);
+    printf("Image output size: %d x %d\n", new_width, new_height);
+    free_image_data(data_in);
+    free(data_out);
+}

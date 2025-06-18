@@ -45,19 +45,7 @@ int main(int argc, char **argv) {
   print_pixel(configuration.filenames[0], atoi(configuration.arguments[0]), atoi(configuration.arguments[1]));
   }
 
-  if (strncmp(configuration.command, "color_invert", 12)== 0) {
-    color_invert(configuration.filenames[0]); 
-  }
 
-   if (strncmp(configuration.command, "scale_crop", 10)== 0) {
-    scale_crop(
-      configuration.filenames[0],
-      atoi(configuration.arguments[0]),
-      atoi(configuration.arguments[1]),
-      atoi(configuration.arguments[2]),
-      atoi(configuration.arguments[3])
-    );
-  }
 
   if ( strncmp(configuration.command, "min_component", 13) == 0 ) {
   char *color = NULL;
@@ -112,6 +100,13 @@ if (strncmp(configuration.command, "mirror_vertical", 15) == 0) {
 }
 if (strncmp(configuration.command, "mirror_total", 12) == 0) {
     mirror_total(configuration.filenames[0]);
+}
+if (strncmp(configuration.command, "scale_nearest", 13) == 0) {
+    char *scale_str = NULL;
+    scale_str = argv[argc-1];
+    scale_nearest(configuration.filenames[0], scale_str);
+
+
 }
   return 0;
 
