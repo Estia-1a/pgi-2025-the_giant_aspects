@@ -103,7 +103,16 @@ if (strncmp(configuration.command, "mirror_vertical", 15) == 0) {
 if (strncmp(configuration.command, "mirror_total", 12) == 0) {
     mirror_total(configuration.filenames[0]);
 }
+if (strcmp(configuration.command, "color_gray_luminance") == 0) {
+    color_gray_luminance(configuration.filenames[0]);
+}
+
+if (strcmp(configuration.command, "color_desaturate") == 0) {
+    color_desaturate(configuration.filenames[0]);
+}
   return 0;
+
+
 
 
 }
