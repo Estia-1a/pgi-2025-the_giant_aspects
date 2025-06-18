@@ -2,6 +2,19 @@ helloworld
 first_pixel
 tenth_pixel
 
+dimension
+second_line
+max_pixel
+min_pixel
+stat_report
+color_gray
+color_red
+color_green
+color_blue
+color_gray_luminance
+color_desaturate
+
+
 min_component
 max_component
 
