@@ -42,13 +42,11 @@ int main(int argc, char **argv) {
   }
 
    if (strncmp(configuration.command, "scale_crop", 10)== 0) {
-    scale_crop(
-      configuration.filenames[0],
-      atoi(configuration.arguments[0]),
-      atoi(configuration.arguments[1]),
-      atoi(configuration.arguments[2]),
-      atoi(configuration.arguments[3])
-    );
+    int center_x=atoi(argv[argc-4]);
+    int center_y=atoi(argv[argc-3]);
+    int box_width=atoi(argv[argc-2]);
+    int box_height=atoi(argv[argc-1]);
+    scale_crop(configuration.filenames[0],center_x, center_y, box_width, box_height);
   }
 
   if (strncmp(configuration.command, "colo_desaturate",16) ==0) {
