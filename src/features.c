@@ -483,9 +483,9 @@ void mirror_horizontal(char *source_path){
     int width, height, channel_count;
     unsigned char *data_in;
     read_image_data(source_path, &data_in, &width, &height, &channel_count);
-    int new_width = height;
-    int new_height = width;
-    unsigned char *data_out = malloc(new_width * new_height * channel_count);
+
+    unsigned char *data_out = malloc(width * height * channel_count);
+
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             for (int c = 0; c < channel_count; c++) {
@@ -495,7 +495,7 @@ void mirror_horizontal(char *source_path){
         }
     }
 
-    write_image_data("image_out.bmp", data_out, new_width, new_height);
+    write_image_data("image_out.bmp", data_out, width, height);
 
     free_image_data(data_in);
     free(data_out);
@@ -504,9 +504,8 @@ void mirror_vertical(char *source_path){
     int width, height, channel_count;
     unsigned char *data_in;
     read_image_data(source_path, &data_in, &width, &height, &channel_count);
-    int new_width = height;
-    int new_height = width;
-    unsigned char *data_out = malloc(new_width * new_height * channel_count);
+    unsigned char *data_out = malloc(width * height * channel_count);
+
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             for (int c = 0; c < channel_count; c++) {
@@ -516,7 +515,7 @@ void mirror_vertical(char *source_path){
         }
     }
 
-    write_image_data("image_out.bmp", data_out, new_width, new_height);
+    write_image_data("image_out.bmp", data_out, width, height);
 
     free_image_data(data_in);
     free(data_out);
@@ -525,9 +524,9 @@ void mirror_total(char *source_path){
     int width, height, channel_count;
     unsigned char *data_in;
     read_image_data(source_path, &data_in, &width, &height, &channel_count);
-    int new_width = height;
-    int new_height = width;
-    unsigned char *data_out = malloc(new_width * new_height * channel_count);
+
+    unsigned char *data_out = malloc(width * height * channel_count);
+
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             for (int c = 0; c < channel_count; c++) {
@@ -537,7 +536,7 @@ void mirror_total(char *source_path){
         }
     }
 
-    write_image_data("image_out.bmp", data_out, new_width, new_height);
+    write_image_data("image_out.bmp", data_out, width, height);
 
     free_image_data(data_in);
     free(data_out);
