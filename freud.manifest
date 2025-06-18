@@ -12,3 +12,6 @@ rotate_acw
 mirror_horizontal
 mirror_vertical
 mirror_total
+
+scale_nearest
+scale_bilinear
