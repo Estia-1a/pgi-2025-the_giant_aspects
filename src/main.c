@@ -110,7 +110,16 @@ if (strncmp(configuration.command, "scale_crop", 10)== 0) {
     int box_height=atoi(argv[argc-1]);
     scale_crop(configuration.filenames[0],center_x, center_y, box_width, box_height);
   }
+if (strcmp(configuration.command, "color_gray_luminance") == 0) {
+    color_gray_luminance(configuration.filenames[0]);
+}
+
+if (strcmp(configuration.command, "color_desaturate") == 0) {
+    color_desaturate(configuration.filenames[0]);
+}
   return 0;
+
+
 
 
 }
