@@ -615,6 +615,11 @@ void scale_crop(char *source_path, int center_x, int center_y, int box_width, in
     int start_x = center_x - box_width / 2;
     int start_y = center_y - box_height / 2;
  
+    if (start_x < 0) start_x = 0;
+    if (start_y < 0) start_y = 0;
+    if (start_x + box_width > width) start_x = width - box_width;
+    if (start_y + box_height > height) start_y = height - box_height;;
+ 
     unsigned char *cropped = malloc(box_width * box_height * channel_count);
  
     for (int y = 0; y < box_height; y++) {
