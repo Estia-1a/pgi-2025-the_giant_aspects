@@ -51,6 +51,10 @@ int main(int argc, char **argv) {
     );
   }
 
+  if (strncmp(configuration.command, "colo_desaturate",16) ==0) {
+        color_desaturate (configuration.filenames [0]);
+    }
+
   /*
    * TO COMPLETE
    */
