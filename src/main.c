@@ -105,8 +105,11 @@ if (strncmp(configuration.command, "scale_nearest", 13) == 0) {
     char *scale_str = NULL;
     scale_str = argv[argc-1];
     scale_nearest(configuration.filenames[0], scale_str);
-
-
+}
+if (strncmp(configuration.command, "scale_bilinear", 13) == 0) {
+    char *bilinear_str = NULL;
+    bilinear_str = argv[argc-1];
+    scale_bilinear(configuration.filenames[0], bilinear_str);
 }
   return 0;
 

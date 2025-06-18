@@ -14,3 +14,4 @@ mirror_vertical
 mirror_total
 
 scale_nearest
+scale_bilinear

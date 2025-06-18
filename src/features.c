@@ -535,9 +535,7 @@ void mirror_total(char *source_path){
             }
         }
     }
-
     write_image_data("image_out.bmp", data_out, width, height);
-
     free_image_data(data_in);
     free(data_out);
 }
@@ -545,21 +543,14 @@ void scale_nearest(char *source_path, char *scale_str) {
 
     int width, height, channel_count;
     unsigned char *data_in;
-
-    // Lecture de l’image source
     read_image_data(source_path, &data_in, &width, &height, &channel_count);
-
-    // Conversion du facteur d’échelle
     float scale = atof(scale_str);
-
-    printf("Scaling image '%s' by factor %s\n", source_path, scale_str);
     int new_width = (int)(width * scale);
     int new_height = (int)(height * scale);
     unsigned char *data_out = malloc(new_width * new_height * channel_count);
 
     for (int y = 0; y < new_height; y++) {
         for (int x = 0; x < new_width; x++) {
-            // Coordonnées de l’image d’origine (plus proche voisin)
             int src_x = (int)(x / scale);
             int src_y = (int)(y / scale);
 
@@ -569,9 +560,48 @@ void scale_nearest(char *source_path, char *scale_str) {
             }
         }
     }
+    write_image_data("image_out.bmp", data_out, new_width, new_height);
+    free_image_data(data_in);
+    free(data_out);
+}
+void scale_bilinear(char *source_path, char *bilinear_str) {
+    int width, height, channel_count;
+    unsigned char *data_in;
+    read_image_data(source_path, &data_in, &width, &height, &channel_count);
+    float scale = atof(bilinear_str);
+    int new_width = (int)(width * scale);
+    int new_height = (int)(height * scale);
+    unsigned char *data_out = malloc(new_width * new_height * channel_count);
+
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            float gx = (float)x / scale;
+            float gy = (float)y / scale;
+
+            int x0 = (int)gx;
+            int y0 = (int)gy;
+            int x1 = x0 + 1 < width ? x0 + 1 : x0;
+            int y1 = y0 + 1 < height ? y0 + 1 : y0;
+
+            float dx = gx - x0;
+            float dy = gy - y0;
+
+            for (int c = 0; c < channel_count; c++) {
+                float v00 = data_in[(y0 * width + x0) * channel_count + c];
+                float v10 = data_in[(y0 * width + x1) * channel_count + c];
+                float v01 = data_in[(y1 * width + x0) * channel_count + c];
+                float v11 = data_in[(y1 * width + x1) * channel_count + c];
+
+                float top = v00 + dx * (v10 - v00);
+                float bottom = v01 + dx * (v11 - v01);
+                float value = top + dy * (bottom - top);
+
+                data_out[(y * new_width + x) * channel_count + c] = (unsigned char)(value);
+            }
+        }
+    }
 
     write_image_data("image_out.bmp", data_out, new_width, new_height);
-    printf("Image output size: %d x %d\n", new_width, new_height);
     free_image_data(data_in);
     free(data_out);
 }
