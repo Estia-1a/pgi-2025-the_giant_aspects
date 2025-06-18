@@ -103,13 +103,13 @@ if (strncmp(configuration.command, "mirror_vertical", 15) == 0) {
 if (strncmp(configuration.command, "mirror_total", 12) == 0) {
     mirror_total(configuration.filenames[0]);
 }
-if (strncmp(configuration.command, "scale_crop", 10)== 0) {
-    int center_x=atoi(argv[argc-4]);
-    int center_y=atoi(argv[argc-3]);
-    int box_width=atoi(argv[argc-2]);
-    int box_height=atoi(argv[argc-1]);
-    scale_crop(configuration.filenames[0],center_x, center_y, box_width, box_height);
-  }
+if (strncmp(configuration.command, "scale_crop", 10) == 0) {
+    int center_x = atoi(configuration.arguments[0]);
+    int center_y = atoi(configuration.arguments[1]);
+    int box_width = atoi(configuration.arguments[2]);
+    int box_height = atoi(configuration.arguments[3]);
+    scale_crop(configuration.filenames[0], center_x, center_y, box_width, box_height);
+}
 if (strcmp(configuration.command, "color_gray_luminance") == 0) {
     color_gray_luminance(configuration.filenames[0]);
 }

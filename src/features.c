@@ -609,12 +609,14 @@ void scale_bilinear(char *source_path, char *bilinear_str) {
 void scale_crop(char *source_path, int center_x, int center_y, int box_width, int box_height) {
     unsigned char *data;
     int width, height, channel_count;
+ 
     read_image_data(source_path, &data, &width, &height, &channel_count);
+ 
     int start_x = center_x - box_width / 2;
     int start_y = center_y - box_height / 2;
-
+ 
     unsigned char *cropped = malloc(box_width * box_height * channel_count);
-
+ 
     for (int y = 0; y < box_height; y++) {
         for (int x = 0; x < box_width; x++) {
  
@@ -627,13 +629,15 @@ void scale_crop(char *source_path, int center_x, int center_y, int box_width, in
                 if (src_x >= 0 && src_x < width && src_y >= 0 && src_y < height) {
                     int src_index = (src_y * width + src_x) * channel_count + c;
                     cropped[dst_index] = data[src_index];
-                } else {
-                    cropped[dst_index] = 0; 
+                } 
+                else {
+                    cropped[dst_index] = 0;
                 }
             }
         }
     }
-    write_image_data ("image_out.bmp", cropped, box_width, box_height);
+ 
+    write_image_data("image_out.bmp", cropped, box_width, box_height);
     free(cropped);
 }
 
