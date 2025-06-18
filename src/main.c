@@ -49,16 +49,6 @@ int main(int argc, char **argv) {
     color_invert(configuration.filenames[0]); 
   }
 
-   if (strncmp(configuration.command, "scale_crop", 10)== 0) {
-    scale_crop(
-      configuration.filenames[0],
-      atoi(configuration.arguments[0]),
-      atoi(configuration.arguments[1]),
-      atoi(configuration.arguments[2]),
-      atoi(configuration.arguments[3])
-    );
-  }
-
   if ( strncmp(configuration.command, "min_component", 13) == 0 ) {
   char *color = NULL;
   color = argv[argc-1];
