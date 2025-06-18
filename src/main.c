@@ -49,9 +49,6 @@ int main(int argc, char **argv) {
     scale_crop(configuration.filenames[0],center_x, center_y, box_width, box_height);
   }
 
-  if (strncmp(configuration.command, "colo_desaturate",16) ==0) {
-        color_desaturate (configuration.filenames [0]);
-    }
 
   /*
    * TO COMPLETE

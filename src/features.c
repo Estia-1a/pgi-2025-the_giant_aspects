@@ -79,35 +79,3 @@ for (int y =0; y<box_height; y++) {
     write_image_data ("image_out.bmp", cropped, box_width, box_height);
     free(cropped);
 }
-
-void color_desaturate(char *source_path) {
-    unsigned char *data;
-    int width, height, channel_count;
-
-    read_image_data(source_path, &data, &width, &height, &channel_count);
-
-    int nbre_pixels = width * height;
-
-    for (int i = 0; i < nbre_pixels; i++) {
-        int idx = i * channel_count;
-        unsigned char R = data[idx];
-        unsigned char G = data[idx + 1];
-        unsigned char B = data[idx + 2];
-
-        unsigned char min_val = R;
-        if (G < min_val) min_val = G;
-        if (B < min_val) min_val = B;
-
-        unsigned char max_val = R;
-        if (G > max_val) max_val = G;
-        if (B > max_val) max_val = B;
-
-        unsigned char new_val = (min_val + max_val) / 2;
-
-        data[idx] = new_val;
-        data[idx + 1] = new_val;
-        data[idx + 2] = new_val;
-    }
-
-    write_image_data("image_out.bmp", data, width, height);
-}

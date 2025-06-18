@@ -4,4 +4,3 @@ first_pixel
 print_pixel
 color_invert
 scale_crop
-color_desaturate
