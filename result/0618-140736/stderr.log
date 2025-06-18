@@ -1,0 +1,4 @@
+/home/runner/work/pgi-2025-the_giant_aspects/pgi-2025-the_giant_aspects/src/main.c: In function ‘main’:
+/home/runner/work/pgi-2025-the_giant_aspects/pgi-2025-the_giant_aspects/src/main.c:111:5: warning: implicit declaration of function ‘scale_crop’ [-Wimplicit-function-declaration]
+  111 |     scale_crop(configuration.filenames[0],center_x, center_y, box_width, box_height);
+      |     ^~~~~~~~~~
