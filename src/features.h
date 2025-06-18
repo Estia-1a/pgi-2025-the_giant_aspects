@@ -34,4 +34,5 @@ void color_desaturate(char *source_path);
 
 void scale_nearest(char *source_path, char *scale_str);
 void scale_bilinear(char *source_path, char *scale_str);
+void scale_crop(char *source_path, int center_x, int center_y, int box_width, int box_height);
 #endif
