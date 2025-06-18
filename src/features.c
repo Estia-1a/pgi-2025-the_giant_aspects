@@ -605,24 +605,33 @@ void scale_bilinear(char *source_path, char *bilinear_str) {
     free_image_data(data_in);
     free(data_out);
 }
-void scale_crop (char *source_path, int center_x, int center_y, int box_width, int box_height) {
+
+void scale_crop(char *source_path, int center_x, int center_y, int box_width, int box_height) {
     unsigned char *data;
     int width, height, channel_count;
-
     read_image_data(source_path, &data, &width, &height, &channel_count);
-    
-int start_x = center_x - box_width / 2;
-int start_y = center_y - box_height / 2;
+    int start_x = center_x - box_width / 2;
+    int start_y = center_y - box_height / 2;
 
-unsigned char *cropped=malloc(box_width*box_height*channel_count);
-for (int y =0; y<box_height; y++) {
-    for (int x=0; x <box_width; x++){
-        for(int c=0; c <channel_count; c++){
-        int src_index = ((start_y+y)*width +(start_x+x))*channel_count+c;
-        int dst_index =(y*box_width+x)*channel_count+c;
-        cropped[dst_index]=data[src_index];
+    unsigned char *cropped = malloc(box_width * box_height * channel_count);
+
+    for (int y = 0; y < box_height; y++) {
+        for (int x = 0; x < box_width; x++) {
+ 
+            int src_x = start_x + x;
+            int src_y = start_y + y;
+ 
+            for (int c = 0; c < channel_count; c++) {
+                int dst_index = (y * box_width + x) * channel_count + c;
+ 
+                if (src_x >= 0 && src_x < width && src_y >= 0 && src_y < height) {
+                    int src_index = (src_y * width + src_x) * channel_count + c;
+                    cropped[dst_index] = data[src_index];
+                } else {
+                    cropped[dst_index] = 0; 
+                }
+            }
         }
-    }
     }
     write_image_data ("image_out.bmp", cropped, box_width, box_height);
     free(cropped);
