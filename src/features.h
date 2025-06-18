@@ -13,7 +13,9 @@ void stat_report(char *source_path);
 
 void print_pixel (char *source_path, int x, int y);
 
-void color_invert(char*filename);
+void color_invert(char*source_path);
+
+void scale_crop(char *source_path, int center_x, int center_y, int box_width, int box_height);
 void color_gray(char *source_path);
 void min_component (char *source_path, char *color);
 void max_component (char *source_path, char *color);
