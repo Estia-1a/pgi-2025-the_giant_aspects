@@ -18,6 +18,7 @@ pixelRGB get_pixel(unsigned char* data, const unsigned int width, const unsigned
     return pixel;
 
     }
+
 /**
  * @brief Here, you have to define functions of the pixel struct : getPixel and setPixel.
  * 
