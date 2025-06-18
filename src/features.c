@@ -580,3 +580,43 @@ void color_gray_luminance(char *source_path) {
 
     free(gray_data);
 }
+void color_desaturate(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    if (data == NULL) {
+        printf("Erreur : image non lue\n");
+        return;
+    }
+
+    unsigned char *desat_data = malloc(width * height * channel_count);
+    if (desat_data == NULL) {
+        printf("Erreur : mémoire insuffisante\n");
+        return;
+    }
+
+    for (int i = 0; i < width * height; i++) {
+        int index = i * channel_count;
+
+        unsigned char R = data[index + 2];
+        unsigned char G = data[index + 1];
+        unsigned char B = data[index + 0];
+
+        unsigned char min_val = R < G ? (R < B ? R : B) : (G < B ? G : B);
+        unsigned char max_val = R > G ? (R > B ? R : B) : (G > B ? G : B);
+
+        unsigned char new_val = (min_val + max_val) / 2;
+
+        desat_data[index + 0] = new_val;
+        desat_data[index + 1] = new_val;
+        desat_data[index + 2] = new_val;
+    }
+
+    int result = write_image_data("image_out.bmp", desat_data, width, height);
+    if (result == 0) {
+        printf("Image désaturée générée : image_out.bmp\n");
+    }
+
+    free(desat_data);
+}
